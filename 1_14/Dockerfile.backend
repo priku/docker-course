@@ -1,1 +1,17 @@
-# use here COPY 1_13 .
+FROM golang:1.27
+
+WORKDIR /usr/src/app
+
+COPY 1_13/go.mod 1_13/go.sum ./
+
+RUN go mod download
+
+COPY 1_13 .
+
+RUN go build
+
+ENV REQUEST_ORIGIN=http://localhost:5001
+
+EXPOSE 8080
+
+CMD ["./server"]
