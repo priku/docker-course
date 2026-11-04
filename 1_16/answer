@@ -1,0 +1,7 @@
+https://azure-ai-text-analyzer.happyocean-ac6808ba.swedencentral.azurecontainerapps.io
+
+I deployed my Azure AI Text Analyzer web application to Azure Container Apps in the Sweden Central region. The app is a Flask application served by Gunicorn, and it runs as a container from my public Docker Hub image prikuh/azure-ai-text-analyzer. It uses the Azure AI Language service for sentiment analysis, key phrases and entity recognition.
+
+The infrastructure is defined with Terraform: a resource group, a Log Analytics workspace, a free tier Language service, a Container Apps environment and the Container App itself. The Language key is passed to the container as a secret. The code is in https://github.com/priku/ai-test-azure.
+
+The app scales to zero when idle to keep the costs low, so the first request after a pause can take about 20 seconds.
